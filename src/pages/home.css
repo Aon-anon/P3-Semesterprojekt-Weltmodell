@@ -1,0 +1,289 @@
+/* setting general styles for body */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: #FFFFFF;
+    color: #01001D;
+}
+
+
+
+/* setting layout for home page */
+.home-page {
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* NAVBAR stays on top while scrolling */
+.navbar {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+}
+
+.nav-list {
+    list-style: none;
+    margin: 1rem;
+    padding: 0 1rem;
+    display: flex;
+    justify-content: center;
+}
+
+.nav-item {
+    margin: 0.5rem;
+}
+
+/* change button styles on hover, active and focus */
+
+.nav-item a {
+    background-color: #F4F4FF;
+    color: #01001D;
+    padding: 0.5rem 1rem;
+    border-radius: 9999px; /* Rounded button */
+}
+
+.nav-item a:hover {
+    box-shadow: 0 0 0 2px #01001D;
+    transition: box-shadow 0.2s ease-out, color 0.2s ease-out;
+}
+
+.nav-item a:active {
+    background-color: #01001D;
+    color: #F4F4FF;
+    transition: background-color 0.2s ease-out, color 0.2s ease-out;
+}
+
+/* .active in Link use here but still not on scroll
+.nav-item a.active {
+    background-color: #01001D;
+    color: #F4F4FF;
+    transition: background-color 0.2s ease-out, color 0.2s ease-out;
+}*/
+
+.nav-item a:focus {
+    box-shadow: 0 0 0 2px #01001D;
+}
+
+/* HEADER */
+header {
+    width: 100%;
+    margin: 0;
+    padding: 10rem 0 0 0;
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+/* WELTMODELL */
+#weltmodell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 4rem;
+}
+
+#weltmodell img {
+    border: 4px solid #01001D;
+    border-radius: 0.5rem;
+    max-width: 100%;
+    height: auto;
+}
+
+/* MITWIRKENDE */
+#mitwirken {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 4rem;
+}
+
+#mitwirken img {
+    max-width: 100%;
+    height: auto;
+    margin-top: 2rem;
+}
+
+.text-section {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.text-section p {
+    border: 2px solid #01001D;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin: 1rem;
+    max-width: 30vw;
+    min-width: 300px;
+    text-align: left;
+}
+
+/* HINTERGRUND */
+#hintergrund {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 4rem;
+}
+
+.card {
+    border: 2px solid #01001D;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin: 0 1rem;
+    max-width: 300px;
+    text-align: left;
+}
+
+/* WORKSHOP */
+#workshop {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 4rem;
+}
+
+.overview {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    max-width: 1200px;
+    margin-bottom: 2rem;
+}
+
+.card-video {
+    margin: 0 1rem;
+    padding: 0;
+    border: 2px solid #01001D;
+    border-radius: 0.5rem;
+    max-width: 100%;
+    height: auto;
+}
+
+.carousel {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+}
+
+.group-info {
+    max-width: 300px;
+    margin-left: 2rem;
+    padding: 0;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.groupnames {
+    font-weight: bold;
+    font-size: smaller;
+    margin-top: 1rem;
+}
+
+.group-info img {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+}
+
+/* Footer */
+footer {
+    width: 100%;
+    padding: 2rem;
+    background-color: #F4F4FF;
+    color: #01001D;
+    text-align: center;
+    margin-top: 4rem;
+}
+
+footer nav {
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+}
+
+footer ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    margin: 1rem 0 0 0;
+}
+
+.social {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 1rem 0 0 0;
+}
+
+.social a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    border-radius: 9999px; /* Rounded button */
+    background-color: #F4F4FF;
+}
+
+.social img {
+    width: 20px;
+    height: 20px;
+}
+
+/* change social icon button color of icon on hover */
+.youtube:hover {
+    border: none;
+    background-color: #FF9CBE;
+    transition: background-color 0.2s ease-out;
+}
+
+.insta:hover {
+    border: none;
+    background-color: #D3ADFF;
+    transition: background-color 0.2s ease-out;
+}
+
+.linkedin:hover {
+    border: none;
+    background-color: #8CC6FF;
+    transition: background-color 0.2s ease-out;
+}
+
+footer a {
+    color: #01001D;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+    color: #01001D;
+}
+
+
