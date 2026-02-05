@@ -547,12 +547,57 @@ a:focus-visible {
     color: #FF4CED;
 }
 
-.popup-image {
+.modell {
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+.modell-image {
   width: 420px;
   height: 220px;
   object-fit: cover;
   border-radius: 8px;
   border: 1px solid rgba(255,255,255,0.15);
+}
+
+.modell-tag-wrap {
+  margin: 0 0 0 0.4rem;
+  padding: 0.4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.2rem;
+  position: absolute;
+  left: 0;
+  bottom: 0.5rem;
+  z-index: 5;
+  background-color: rgba(0, 0, 0, 0.75);
+  border-radius: 10px;
+}
+.modell-tag-wrap .modell-tag-text {
+  display: none; /* hidden by default */
+  margin: 0 0 0 0.4rem;
+  font-size: 1rem;
+}
+.modell-tag-wrap:hover .modell-tag-text {
+  display: inline; /* show on hover of wrap */
+}
+.modell-tag-text {
+  margin: 0;
+  padding: 0;
+}
+.modell-tags {
+  width: fit-content;
+  height: fit-content;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+}
+.modell-tag-icon {
+  width: 20px;
+  height: 20px;
 }
 
 .popup p {

@@ -37,7 +37,7 @@
   left: 0;
   bottom: 0.1rem;
   z-index: 5;
-  background-color: black;
+  background-color: rgba(0, 0, 0, 0.75);
   border-radius: 10px;
 }
 .tag-wrap .tag-text {
