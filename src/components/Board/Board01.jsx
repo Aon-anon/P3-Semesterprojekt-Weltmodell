@@ -10,37 +10,37 @@ function Board01() {
     const groupData = [
       {
         name: "Shaila",
-        description: "Eine Gruppe aus Berlin, die sich im Futurium zum Workshop traf und gemeinsam an Mobilitätsmodellen werkte – alltägliche Menschen, die ihre Hand an innovativen Konzepten versuchten.",
+        description: "In der Zukunft ist Arbeit unterwegs gestaltet. Arbeitsweg und Raum verschwimmen und Arbeitsmoral wird auch durch Aussicht hoch gehalten.",
         avatar: "https://picsum.photos/150/150?v=111"
       },
       {
         name: "Marcus",
-        description: "BLdkfhjvkinctbf54ruetco8g54engjvndfbgjndfgjndfgjndfgjndfgjndfbgjndfg",
+        description: "Es wird Luftlinien zu wichtigen Knotenpunten geben und die letzte Meile filegen die Kapseln dann einzeln bis nach Hause.",
         avatar: "https://picsum.photos/150/150?v=222"
       },
       {
         name: "Lisa",
-        description: "Verkehrsplanerin aus Hamburg mit Leidenschaft für zukunftsorientierte Mobilität.",
+        description: "Wir überwinden die Erdanziehung und haben endlich Hoverfahrzeuge. Jeder sein eigenes Bike mit dem man auch vertikal Hochhäuser hochfährt.",
         avatar: "https://picsum.photos/150/150?v=333"
       },
       {
         name: "Felix",
-        description: "Ingenieur und Visionär, der an der Schnittstelle von Technik und Design arbeitet.",
+        description: "Nachdem Arbeit und Freizeit auch unterwegs gestaltet werden kann, gewinnt Entschleunigung der Fortbewegung wieder an Bedeutung. Gemeinsamkeit und Aussicht treten in den Vordergrund und der Weg wird zum neuen Verweilort.",
         avatar: "https://picsum.photos/150/150?v=444"
       },
       {
         name: "Clara",
-        description: "Architektin, die urbane Räume für neue Mobilitätskonzepte gestaltet.",
+        description: "Es wird ganz normal sein, auch kurze Strecken zu fliegen und pro Haus oben einen Landeplatz zu haben. Man besitzt selber kein Gefährt sondern bestellt es zu sich.",
         avatar: "https://picsum.photos/150/150?v=555"
       },
       {
         name: "Daniel",
-        description: "Nachhaltigkeitsexperte, der Mobilitätswende praktisch umsetzt.",
+        description: "Autos werden nie ganz verschwinden, aber immer modaler und anpassbar. Für die Familien der Zukunft, die keinen festen Wohnort mehr haben, sind sie Transformer zwischen Schlafzimmer, Spaßzimmer und Transportmittel.",
         avatar: "https://picsum.photos/150/150?v=666"
       },
       {
         name: "Sophie",
-        description: "Designerin mit Fokus auf nutzerfreundliche Transportlösungen der Zukunft.",
+        description: "In der Zukunft kann man auch extreme Umgebungen bereisen und das Gefährt kommt über weit aus mehr Hindernisse hinweg. Der Inenenraum ist so ausgekoppelt, dass man nichts vom Wackeln mitbekommt.",
         avatar: "https://picsum.photos/150/150?v=777"
       }
     ];
@@ -78,11 +78,11 @@ function Board01() {
               return (
                 <>
                   <img className="popup-image" src={`/modell-${String(modelIndex + 1).padStart(2, '0')}.jpg`} alt="Fahrzeugmodell" />
-                  <div className="group-info">
-                    <p>{data.description}</p>
+                  <div className="user-info">
+                    <p className='small'>{data.description}</p>
                     <p className="groupnames">{data.name}</p>
                     <img
-                      className="group-avatar"
+                      className="user-avatar"
                       src={data.avatar}
                       alt="Profilbild"
                     />
