@@ -2,13 +2,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { NavigationMenu } from "radix-ui";
 import { Footprints, Bike, Car, Bus, Sailboat, Plane, CableCar, Scooter, Box, X } from 'lucide-react';
-import Board01 from '../components/Board/Board01.jsx';
-import Board02 from '../components/Board/Board02.jsx';
-import Board03 from '../components/Board/Board03.jsx';
-import Board04 from '../components/Board/Board04.jsx';
-import Board05 from '../components/Board/Board05.jsx';
-import Board06 from '../components/Board/Board06.jsx';
-import Board07 from '../components/Board/Board07.jsx';
+import Board from '../components/Board/Board.jsx';
 import { Maximize, Earth, Map, Zap, Users, Timer } from 'lucide-react';
 import EmblaCarousel from '../components/EmblaCarouselWithout/EmblaCarousel.jsx';
 import './home.css';
@@ -167,14 +161,7 @@ function Home() {
             </div>
             {/* example image of the Board of vehicles sorted by tags given by users */}
             <div className='board'>
-                {
-                    board === 1 ? <Board01 /> :
-                    board === 2 ? <Board02 /> :
-                    board === 3 ? <Board03 /> :
-                    board === 4 ? <Board04 /> :
-                    board === 5 ? <Board05 /> :
-                    <Board06 />
-                }
+                <Board boardClass={`board-0${board}`} />
                 <div className='board-controls'>
                     <div className={`board-control ${board === 1 ? "is-active" : ""}`} onClick={() => setBoard(1)} >
                         <Maximize aria-label='sort by zones' className='board-control-icon' />
