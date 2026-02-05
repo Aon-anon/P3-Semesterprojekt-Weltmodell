@@ -18,8 +18,8 @@ const EmblaCarousel = (props) => {
       aboutText:
         "„Wir haben uns im Futurium beim Workshop kennengelernt.“",
       names: "Björn, Alex, Leah, Ben & Anna",
-      zones: "1",
-      seats: "1",
+      zones: "01",
+      seats: "01",
       future: "Müll",
       terrain: "extrem",
       energy: "solar",
