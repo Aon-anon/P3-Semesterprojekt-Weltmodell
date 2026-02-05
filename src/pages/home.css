@@ -1,25 +1,96 @@
 /* setting general styles for body */
+html {
+    margin: 0;
+    padding: 0;
+}
+
+#root {
+    width: 100%;
+}
+
 body {
     margin: 0;
     padding: 0;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    background-color: #FFFFFF;
-    color: #01001D;
+    /* fonts similar to Futurium and Instrument Sans */
+    font-family: Futurium, Instrument Sans, "NB International Pro", Helvetica, sans-serif;
+    font-weight: 300;
+    line-height: 1.3rem;
+    background-color: #000000;
+    color: #ffffff;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
+h1 {
+    font-family: Inter;
+    font-weight: bold;
+    font-size: 64px;
+    text-align: center;
+}
+
+h2 {
+    font-family: Inter;
+    font-weight: light;
+    font-size: 24px;
+    text-align: center;
+}
+
+h3 {
+    font-weight: bold;
+    font-size: 24px;
+    text-align: left;
+}
+
+p {
+    font-weight: normal;
+    font-size: 1rem;
+    text-align: left;
+}
+
+.small {
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 1rem;
+    text-align: left;
+}
+
+a { 
+    text-decoration: none;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    padding: 0.6em 1.2em;
+    font-size: 1em;
+    font-weight: 500;
+    font-family: inherit;
+    cursor: pointer;
+    transition: border-color 0.25s;
+}
+
+a:focus,
+a:focus-visible {
+    outline: 4px auto #FF4CED;
+}
 
 /* setting layout for home page */
 .home-page {
-    width: 100vw;
-    margin: 0;
+    width: 888px;
+    min-width: 500px;
+    max-width: 1200px;
+    margin: 0 auto 0 auto;
     padding: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-/* NAVBAR stays on top while scrolling */
+/* NAVBAR */
 .navbar {
     width: 100%;
     position: fixed;
@@ -29,6 +100,7 @@ body {
     z-index: 1000;
     display: flex;
     justify-content: space-between;
+    background-color: #000000;
 }
 
 .nav-list {
@@ -43,134 +115,466 @@ body {
     margin: 0.5rem;
 }
 
-/* change button styles on hover, active and focus */
+.nav-button {
+    margin: 0.5rem;
+}
+
+/* change styles on hover, active and focus (different for nav-items that link to sections inpage and nav-button that leads to a different page for the Tool */
 
 .nav-item a {
-    background-color: #F4F4FF;
-    color: #01001D;
+    color: #ffffff;
     padding: 0.5rem 1rem;
-    border-radius: 9999px; /* Rounded button */
 }
 
 .nav-item a:hover {
-    box-shadow: 0 0 0 2px #01001D;
-    transition: box-shadow 0.2s ease-out, color 0.2s ease-out;
+    color: #FF4CED;
+    transition: color 0.3s ease-out;
 }
 
 .nav-item a:active {
-    background-color: #01001D;
-    color: #F4F4FF;
-    transition: background-color 0.2s ease-out, color 0.2s ease-out;
+    color: #260B24;
+    transition: color 0.2s ease-out, color 0.2s ease-out;
 }
 
-/* .active in Link use here but still not on scroll
-.nav-item a.active {
-    background-color: #01001D;
-    color: #F4F4FF;
-    transition: background-color 0.2s ease-out, color 0.2s ease-out;
-}*/
-
-.nav-item a:focus {
-    box-shadow: 0 0 0 2px #01001D;
+.nav-item.is-active a {
+  color: #FF4CED;
 }
 
-/* HEADER */
-header {
+.btn-primary {
+    background-color: #ffffff;
+    color: #000000;
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+}
+
+.btn-primary:hover {
+    background-color: #FF4CED;
+    transition: background-color 0.3s ease-out;
+}
+
+.btn-primary:active {
+    background-color: #260B24;
+    transition: background-color 0.3s ease-out;
+}
+
+.leave-overlay{
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.leave-modal{
+  width: min(520px, 92vw);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 12px;
+  background: #000;
+  padding: 1rem;
+}
+
+.leave-actions{
+  display: flex;
+  gap: .75rem;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}
+
+.btn-secondary{
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(255,255,255,0.25);
+  background: transparent;
+  color: white;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn-secondary:hover {
+    color: #FF4CED;
+    border: 1px solid #FF4CED;
+    transition: color 0.3s ease-out, border 0.3s ease-out;
+}
+
+
+/* START WELTMODELL */
+.intro {
+    height: 100vh;
     width: 100%;
     margin: 0;
-    padding: 10rem 0 0 0;
-    text-align: center;
-    margin-bottom: 4rem;
-}
-
-/* WELTMODELL */
-#weltmodell {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 4rem;
-}
-
-#weltmodell img {
-    border: 4px solid #01001D;
-    border-radius: 0.5rem;
-    max-width: 100%;
-    height: auto;
-}
-
-/* MITWIRKENDE */
-#mitwirken {
-    width: 100%;
+    padding: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 4rem;
-}
-
-#mitwirken img {
-    max-width: 100%;
-    height: auto;
-    margin-top: 2rem;
-}
-
-.text-section {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    max-width: 1200px;
-}
-
-.text-section p {
-    border: 2px solid #01001D;
-    border-radius: 0.5rem;
-    padding: 1rem;
-    margin: 1rem;
-    max-width: 30vw;
-    min-width: 300px;
-    text-align: left;
-}
-
-/* HINTERGRUND */
-#hintergrund {
-    width: 100%;
-    display: flex;
     justify-content: center;
-    margin-bottom: 4rem;
+}
+
+.row {
+    margin: 1rem 0 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    justify-content: center;
+    position: relative;
+}
+
+/* HEADER */
+#header {
+    height: 100vh;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo {
+    width: 420px;
+    height: auto;
+}
+
+/* SAMMLUNG WELTMODELL BOARD */
+#weltmodell-board {
+    height: 100vh;
+    width: 100%;
+    margin: 0 0 10rem 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.section {
+    margin: 3rem 2rem 1rem 2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .card {
-    border: 2px solid #01001D;
-    border-radius: 0.5rem;
-    padding: 1rem;
-    margin: 0 1rem;
+    margin: 0;
+    padding: 0;
+    width: 40%;
     max-width: 300px;
+}
+
+.card-title {
+    font-size: 1.3rem;
+    margin: 0.5rem 0;
+    padding: 0;
     text-align: left;
+}
+
+.card-paragraph {
+    font-size: 0.8rem;
+    line-height: 1rem;
+    margin: 0;
+    padding: 0;
+}
+
+.card-video {
+    margin: 0;
+    padding: 0;
+    width: 55%;
+    min-width: 250px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.video-embed {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+}
+
+.video-embed iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: 10px; /* optional */
+}
+
+.board {
+    width: 100%;
+    height: 50%;
+    min-height: 500px;
+    border: 1px solid #ffffff;
+    border-radius: 10px;
+    margin: 0;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.board-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 320px;
+    max-height: 620px;
+    overflow: hidden;
+}
+
+.board-icon {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    color: #ffffff;
+}
+
+.board-icon:hover {
+    color: #FF4CED;
+    cursor: pointer;
+}
+
+/* BOARD SCATTER */
+
+/* =========================
+   BOARD 01 — balanced scatter
+   ========================= */
+.board-01 .board-icon:nth-child(1)  { top: 12%; left: 10%; }
+.board-01 .board-icon:nth-child(2)  { top: 20%; left: 30%; }
+.board-01 .board-icon:nth-child(3)  { top: 10%; left: 58%; }
+.board-01 .board-icon:nth-child(4)  { top: 26%; left: 78%; }
+
+.board-01 .board-icon:nth-child(5)  { top: 44%; left: 14%; }
+.board-01 .board-icon:nth-child(6)  { top: 52%; left: 38%; }
+.board-01 .board-icon:nth-child(7)  { top: 40%; left: 62%; }
+.board-01 .board-icon:nth-child(8)  { top: 58%; left: 82%; }
+
+.board-01 .board-icon:nth-child(9)  { top: 72%; left: 12%; }
+.board-01 .board-icon:nth-child(10) { top: 80%; left: 32%; }
+.board-01 .board-icon:nth-child(11) { top: 70%; left: 56%; }
+.board-01 .board-icon:nth-child(12) { top: 86%; left: 76%; }
+
+
+/* =========================
+   BOARD 02 — big cluster left, a few far right
+   ========================= */
+.board-02 .board-icon:nth-child(1)  { top: 18%; left: 16%; }
+.board-02 .board-icon:nth-child(2)  { top: 22%; left: 22%; }
+.board-02 .board-icon:nth-child(3)  { top: 26%; left: 18%; }
+.board-02 .board-icon:nth-child(4)  { top: 30%; left: 24%; }
+
+.board-02 .board-icon:nth-child(5)  { top: 44%; left: 14%; }
+.board-02 .board-icon:nth-child(6)  { top: 48%; left: 22%; }
+.board-02 .board-icon:nth-child(7)  { top: 52%; left: 16%; }
+.board-02 .board-icon:nth-child(8)  { top: 56%; left: 24%; }
+
+.board-02 .board-icon:nth-child(9)  { top: 16%; left: 74%; } /* outlier */
+.board-02 .board-icon:nth-child(10) { top: 40%; left: 84%; } /* outlier */
+.board-02 .board-icon:nth-child(11) { top: 72%; left: 78%; } /* outlier */
+.board-02 .board-icon:nth-child(12) { top: 80%; left: 10%; } /* edge */
+
+
+/* =========================
+   BOARD 03 — center cluster, corners populated
+   ========================= */
+.board-03 .board-icon:nth-child(1)  { top: 8%;  left: 10%; }  /* corner */
+.board-03 .board-icon:nth-child(2)  { top: 10%; left: 78%; }  /* corner */
+
+.board-03 .board-icon:nth-child(3)  { top: 34%; left: 44%; }  /* center cluster */
+.board-03 .board-icon:nth-child(4)  { top: 36%; left: 50%; }
+.board-03 .board-icon:nth-child(5)  { top: 40%; left: 46%; }
+.board-03 .board-icon:nth-child(6)  { top: 42%; left: 52%; }
+.board-03 .board-icon:nth-child(7)  { top: 46%; left: 48%; }
+.board-03 .board-icon:nth-child(8)  { top: 48%; left: 54%; }
+
+.board-03 .board-icon:nth-child(9)  { top: 82%; left: 12%; }  /* corner */
+.board-03 .board-icon:nth-child(10) { top: 86%; left: 78%; }  /* corner */
+.board-03 .board-icon:nth-child(11) { top: 62%; left: 18%; }  /* side */
+.board-03 .board-icon:nth-child(12) { top: 64%; left: 82%; }  /* side */
+
+
+/* =========================
+   BOARD 04 — diagonal “flow” + small mid cluster
+   ========================= */
+.board-04 .board-icon:nth-child(1)  { top: 10%; left: 14%; }
+.board-04 .board-icon:nth-child(2)  { top: 18%; left: 26%; }
+.board-04 .board-icon:nth-child(3)  { top: 26%; left: 38%; }
+.board-04 .board-icon:nth-child(4)  { top: 34%; left: 50%; }
+
+.board-04 .board-icon:nth-child(5)  { top: 42%; left: 62%; }
+.board-04 .board-icon:nth-child(6)  { top: 50%; left: 74%; }
+.board-04 .board-icon:nth-child(7)  { top: 58%; left: 86%; } /* edge */
+
+.board-04 .board-icon:nth-child(8)  { top: 46%; left: 52%; } /* mid cluster */
+.board-04 .board-icon:nth-child(9)  { top: 48%; left: 58%; }
+
+.board-04 .board-icon:nth-child(10) { top: 74%; left: 22%; } /* outlier */
+.board-04 .board-icon:nth-child(11) { top: 82%; left: 36%; }
+.board-04 .board-icon:nth-child(12) { top: 88%; left: 52%; }
+
+
+/* =========================
+   BOARD 05 — two clusters (bottom-left & top-right)
+   ========================= */
+.board-05 .board-icon:nth-child(1)  { top: 16%; left: 68%; } /* top-right cluster */
+.board-05 .board-icon:nth-child(2)  { top: 20%; left: 74%; }
+.board-05 .board-icon:nth-child(3)  { top: 24%; left: 70%; }
+.board-05 .board-icon:nth-child(4)  { top: 28%; left: 76%; }
+
+.board-05 .board-icon:nth-child(5)  { top: 62%; left: 14%; } /* bottom-left cluster */
+.board-05 .board-icon:nth-child(6)  { top: 66%; left: 20%; }
+.board-05 .board-icon:nth-child(7)  { top: 70%; left: 16%; }
+.board-05 .board-icon:nth-child(8)  { top: 74%; left: 22%; }
+
+.board-05 .board-icon:nth-child(9)  { top: 46%; left: 44%; } /* center */
+.board-05 .board-icon:nth-child(10) { top: 50%; left: 50%; } /* center */
+.board-05 .board-icon:nth-child(11) { top: 10%; left: 10%; } /* outlier */
+.board-05 .board-icon:nth-child(12) { top: 86%; left: 86%; } /* outlier */
+
+
+/* =========================
+   BOARD 06 — edge-heavy (ring vibe) + small left cluster
+   ========================= */
+.board-06 .board-icon:nth-child(1)  { top: 10%; left: 18%; }
+.board-06 .board-icon:nth-child(2)  { top: 10%; left: 48%; }
+.board-06 .board-icon:nth-child(3)  { top: 12%; left: 78%; }
+
+.board-06 .board-icon:nth-child(4)  { top: 40%; left: 88%; } /* right edge */
+.board-06 .board-icon:nth-child(5)  { top: 72%; left: 84%; } /* bottom-right */
+.board-06 .board-icon:nth-child(6)  { top: 88%; left: 56%; } /* bottom edge */
+.board-06 .board-icon:nth-child(7)  { top: 86%; left: 22%; } /* bottom-left */
+.board-06 .board-icon:nth-child(8)  { top: 54%; left: 8%;  } /* left edge */
+
+.board-06 .board-icon:nth-child(9)  { top: 32%; left: 18%; } /* left cluster */
+.board-06 .board-icon:nth-child(10) { top: 36%; left: 24%; }
+.board-06 .board-icon:nth-child(11) { top: 40%; left: 16%; }
+
+.board-06 .board-icon:nth-child(12) { top: 52%; left: 56%; } /* inner */
+
+
+/* TO FIX: should stick to the bottom left corner of the Board */
+.board-controls {
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    justify-content: flex-end;
+    position: absolute;
+    left: 1rem;
+    bottom: 1rem;
+    z-index: 5;
+}
+
+.board-control {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: #ffffff;
+    position: relative;
+}
+
+.board-control p {
+    margin: 0.3rem 0 0 0.2rem;
+    padding: 0;
+    font-size: 0.8rem;
+}
+
+.board-control:hover {
+    cursor: pointer;
+    color: #FF4CED;
+}
+
+.board-content.is-active {
+    color: #FF4CED;
+}
+
+.board-control.is-active .board-control-icon {
+  color: #FF4CED;
+}
+
+.board-control.is-active p {
+  color: #FF4CED;
+}
+
+.board-control-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+/* Full overlay that sits on top of the board */
+.popup-overlay {
+  position: absolute;
+  inset: 0;                 /* top/right/bottom/left: 0 */
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;              /* above icons + controls */
+}
+
+.popup {
+    width: 700px;
+    margin: 0;
+    padding: 1rem;
+    border: 1px solid #ffffff;
+    border-radius: 10px;
+    background-color: #000000;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    position: relative;
+}
+
+/* close button */
+.popup-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: 0;
+  color: white;
+  cursor: pointer;
+}
+
+.popup-close:hover {
+    color: #FF4CED;
+}
+
+.popup-image {
+  width: 420px;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.15);
+}
+
+.popup p {
+    font-size: 12px;
+}
+
+.group-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.2);
 }
 
 /* WORKSHOP */
 #workshop {
+    height: 100vh;
     width: 100%;
+    margin: 0 0 5rem 0;
+    padding: 0;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    margin-bottom: 4rem;
-}
-
-.overview {
-    display: flex;
     justify-content: center;
-    width: 100%;
-    max-width: 1200px;
-    margin-bottom: 2rem;
-}
-
-.card-video {
-    margin: 0 1rem;
-    padding: 0;
-    border: 2px solid #01001D;
-    border-radius: 0.5rem;
-    max-width: 100%;
-    height: auto;
 }
 
 .carousel {
@@ -178,16 +582,25 @@ header {
     max-width: 1200px;
     margin: 0;
     padding: 0;
+}
+
+.card-carousel {
+    width: 100%;
+    margin: 0;
+    padding: 1rem;
+    border: 1px solid #ffffff;
+    border-radius: 10px;
     display: flex;
-    justify-content: space-between;
-    margin-top: 2rem;
+    flex-direction: row;
+    align-items: center;
+    gap: 2rem;
+    justify-content: center;
 }
 
 .group-info {
-    max-width: 300px;
-    margin-left: 2rem;
+    width: 30%;
+    min-width: 150px;
     padding: 0;
-    text-align: left;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -195,25 +608,36 @@ header {
 
 .groupnames {
     font-weight: bold;
-    font-size: smaller;
-    margin-top: 1rem;
+    font-size: 0.7rem;
+    margin: 1rem 0 0.5rem 0;
+    text-align: center;
 }
 
 .group-info img {
-    border-radius: 50%;
-    width: 150px;
-    height: 150px;
+    width: 100px;
+    height: 100px;
     object-fit: cover;
+    border-radius: 50%;
 }
 
 /* Footer */
+.SeparatorRoot {
+	background-color: #ffffff;
+}
+.SeparatorRoot[data-orientation="horizontal"] {
+	height: 1px;
+	width: 100%;
+}
+
 footer {
     width: 100%;
-    padding: 2rem;
-    background-color: #F4F4FF;
-    color: #01001D;
+    margin: 0;
+    padding: 1rem;
+    background-color: #000000;
+    color: #ffffff;
     text-align: center;
-    margin-top: 4rem;
+    display: flex;
+    flex-direction: column;
 }
 
 footer nav {
@@ -252,38 +676,137 @@ footer ul {
     background-color: #F4F4FF;
 }
 
-.social img {
-    width: 20px;
-    height: 20px;
+/* social media */
+.social-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    border-radius: 9999px; /* Rounded button */
+    background-color: #ffffff;
+    border: none;
+}
+.social-button:hover {
+    background-color: #FF4CED;
+    transition: background-color 0.3s ease-out;
+    cursor: pointer;
 }
 
-/* change social icon button color of icon on hover */
-.youtube:hover {
-    border: none;
-    background-color: #FF9CBE;
-    transition: background-color 0.2s ease-out;
+.social-icon {
+    margin: 0;
+    padding: 0;
+    width: 24px;
+    height: 24px;
+    display: block;
 }
 
-.insta:hover {
-    border: none;
-    background-color: #D3ADFF;
-    transition: background-color 0.2s ease-out;
+.PopoverContent {
+	border-radius: 4px;
+	padding: 15px 20px 10px 20px;
+	width: 260px;
+	background-color: white;
+    color: #000000;
+	animation-duration: 400ms;
+	animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+	will-change: transform, opacity;
+}
+.PopoverContent[data-state="open"][data-side="top"] {
+	animation-name: slideDownAndFade;
+}
+.PopoverContent[data-state="open"][data-side="right"] {
+	animation-name: slideLeftAndFade;
+}
+.PopoverContent[data-state="open"][data-side="bottom"] {
+	animation-name: slideUpAndFade;
+}
+.PopoverContent[data-state="open"][data-side="left"] {
+	animation-name: slideRightAndFade;
 }
 
-.linkedin:hover {
+.PopoverArrow {
+	fill: white;
+}
+
+.PopoverClose {
+	border-radius: 100%;
     border: none;
-    background-color: #8CC6FF;
-    transition: background-color 0.2s ease-out;
+    background-color: #ffffff;
+	height: 30px;
+	width: 30px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	color: #000000;
+	position: absolute;
+	top: 5px;
+	right: 5px;
+}
+.PopoverClose:hover {
+	color: #FF4CED;
+    cursor: pointer;
+    transition: color 0.3s ease-out;
+}
+.PopoverClose:focus {
+    color: #FF4CED;
+}
+
+@keyframes slideUpAndFade {
+	from {
+		opacity: 0;
+		transform: translateY(2px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes slideRightAndFade {
+	from {
+		opacity: 0;
+		transform: translateX(-2px);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+@keyframes slideDownAndFade {
+	from {
+		opacity: 0;
+		transform: translateY(-2px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes slideLeftAndFade {
+	from {
+		opacity: 0;
+		transform: translateX(2px);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
 }
 
 footer a {
-    color: #01001D;
+    color: #ffffff;
     text-decoration: none;
 }
 
 footer a:hover {
-    text-decoration: underline;
-    color: #01001D;
+    color: #FF4CED;
 }
 
 
+/* TOOL iframe version */
+.tool {
+    width: 800px;
+    height: 450px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}

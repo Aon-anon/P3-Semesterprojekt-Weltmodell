@@ -1,11 +1,22 @@
 import React from 'react';
+import { useState, useEffect } from 'react';
 import { NavigationMenu } from "radix-ui";
+import { Footprints, Bike, Car, Bus, Sailboat, Plane, CableCar, Scooter, Box, X } from 'lucide-react';
+import Board01 from '../components/Board/Board01.jsx';
+import Board02 from '../components/Board/Board02.jsx';
+import Board03 from '../components/Board/Board03.jsx';
+import Board04 from '../components/Board/Board04.jsx';
+import Board05 from '../components/Board/Board05.jsx';
+import Board06 from '../components/Board/Board06.jsx';
+import Board07 from '../components/Board/Board07.jsx';
+import { Maximize, Earth, Map, Zap, Users, Timer } from 'lucide-react';
 import EmblaCarousel from '../components/EmblaCarouselWithout/EmblaCarousel.jsx';
 import './home.css';
 import '../components/EmblaCarouselWithout/embla.css';
-import Youtube from '../assets/youtube.svg';
-import Instagram from '../assets/instagram.svg';
-import Linkedin from '../assets/linkedin.svg';
+import { Separator, Popover } from "radix-ui";
+
+const figmaUrl =
+  'https://www.figma.com/proto/o986kbjMzKObptJd6ThiEa/Untitled?node-id=141-1499&t=W4OxEt10S9FsnVdI-1&scaling=contain&content-scaling=fixed&page-id=141%3A1497&starting-point-node-id=141%3A1499';
 
 
 const OPTIONS = { loop: true }
@@ -13,39 +24,60 @@ const SLIDE_COUNT = 5
 const SLIDES = Array.from(Array(SLIDE_COUNT).keys())
 
 function Home() {
-  return (
-    <div className="home-page">
-        {/* The Home Page of Weltmodell is a scroller, the tool a seperate page, which I won't be coding as a part of this semster, therefore linking to the Figma Klickdummy instead */}
 
-        {/* Navbar linking to different 5 sections in the scroller on the left and to the Tool Page on the right */}
+    const [activeSection, setActiveSection] = useState("start");
+
+    useEffect(() => {
+        const ids = ["start", "weltmodell-board", "workshop"];
+        const sections = ids.map((id) => document.getElementById(id)).filter(Boolean);
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                // entries fire in batches; pick the one that is intersecting and closest to top
+                const intersecting = entries.filter((e) => e.isIntersecting);
+                if (!intersecting.length) return;
+
+                // choose the one whose top is closest to the top of viewport (smallest abs value)
+                const best = intersecting.sort(
+                    (a, b) => Math.abs(a.boundingClientRect.top) - Math.abs(b.boundingClientRect.top)
+                )[0];
+
+                setActiveSection(best.target.id);
+            },
+        {
+            root: null,
+            rootMargin: "-20% 0px -70% 0px",
+            threshold: 0,
+        }
+    );
+
+    sections.forEach((s) => observer.observe(s));
+    return () => observer.disconnect();
+  }, []);
+
+    const [board, setBoard] = useState(1)
+
+    const [leaveOpen, setLeaveOpen] = useState(false);
+
+  return (
+    <>
+    {/* Navbar linking to different 5 sections in the scroller on the left and to the Tool Page on the right */}
         <NavigationMenu.Root className='navbar'>
             <NavigationMenu.List className='nav-list'>
 
-                <NavigationMenu.Item className='nav-item'>
+                <NavigationMenu.Item className={`nav-item ${activeSection === "start" ? "is-active" : ""}`} >
                     <NavigationMenu.Link href='#start'>
-                        Start
-                    </NavigationMenu.Link>
-                </NavigationMenu.Item>
-
-                <NavigationMenu.Item className='nav-item'>
-                    <NavigationMenu.Link href='#weltmodell'>
                         Weltmodell
                     </NavigationMenu.Link>
                 </NavigationMenu.Item>
 
-                <NavigationMenu.Item className='nav-item'>
-                    <NavigationMenu.Link href='#mitwirken'>
-                        Mitwirkende
+                <NavigationMenu.Item className={`nav-item ${activeSection === "weltmodell-board" ? "is-active" : ""}`} >
+                    <NavigationMenu.Link href='#weltmodell-board'>
+                        Sammlung
                     </NavigationMenu.Link>
                 </NavigationMenu.Item>
 
-                <NavigationMenu.Item className='nav-item'>
-                    <NavigationMenu.Link href='#hintergrund'>
-                        Hintergrund
-                    </NavigationMenu.Link>
-                </NavigationMenu.Item>
-
-                <NavigationMenu.Item className='nav-item'>
+                <NavigationMenu.Item className={`nav-item ${activeSection === "workshop" ? "is-active" : ""}`} >
                     <NavigationMenu.Link href='#workshop'>
                         Workshop
                     </NavigationMenu.Link>
@@ -55,8 +87,8 @@ function Home() {
 
             </NavigationMenu.List>
             <NavigationMenu.List className='nav-list'>
-                <NavigationMenu.Item className='nav-item'>
-                    <NavigationMenu.Link href='https://www.figma.com/proto/o986kbjMzKObptJd6ThiEa/Untitled?node-id=141-1499&t=QKkl1qIcJGfBSGGw-1&scaling=min-zoom&content-scaling=fixed&page-id=141%3A1497&starting-point-node-id=141%3A1499' >
+                <NavigationMenu.Item className='nav-button'>
+                    <NavigationMenu.Link className='btn-primary' href={figmaUrl} target='_blank' rel='noopener noreferrer' onClick={(e) => { e.preventDefault(); setLeaveOpen(true); }} >
                         Mitmachen
                     </NavigationMenu.Link>
                 </NavigationMenu.Item>
@@ -64,100 +96,149 @@ function Home() {
 
         </NavigationMenu.Root>
 
+        {leaveOpen && (
+        <div className="leave-overlay" onClick={() => setLeaveOpen(false)}>
+          <div className="leave-modal" onClick={(e) => e.stopPropagation()}>
+            <h4>Du verlässt jetzt diese Seite</h4>
+            <p>
+              Der Prototyp öffnet sich in Figma in einem neuen Tab. Falls du nichts siehst,
+              nutze im Figma-Viewer oben rechts die Optionen wie <b>Fit width</b> oder <b>Fullscreen</b>.
+            </p>
+
+            <div className="leave-actions">
+              <button className="btn-secondary" onClick={() => setLeaveOpen(false)}>
+                Abbrechen
+              </button>
+
+              <a
+                className="btn-primary"
+                href={figmaUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setLeaveOpen(false)}
+              >
+                Weiter zu Figma
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
+
+    <div className="home-page">
+        {/* The Home Page of Weltmodell is a scroller, the tool a seperate page, which I won't be coding as a part of this semster, therefore linking to the Figma Klickdummy instead */}
+
+        
+
 
         {/* HEADER with Title "Weltmodell Kollektiv-Mobilität" and subtitle "Mitfahren, Mitgestalten" */}
-        <header id="start">
-            <h1>Weltmodell <br /> Kollektiv-Mobilität</h1>
-            <h2>Mitfahren, Mitgestalten</h2>
-        </header>
-
-        {/* ANIMATION */}
-        {/* later adding a scroll animation of the Box coming into view and the header getting smaller */}
-        {/* interactive visualization of the different possible tags of the Box */}
-        {/* then the scroll animation continues with zooming out and building the vehicle around the Box
-        zooming even farther and displaying the vehicle on a card with example tags */}
+        <section id='start' className="scroll-section">
+            <div className='intro'>
+                <p>Wie wollen wir uns fortbewegen?</p>
+                <div className='row'>
+                    <Footprints color='#14B9B2' size={32} aria-label='Footprints Icon' className='inspo-icon' />
+                    <Bike color='#71F2ED' size={32} aria-label='Bike Icon' className='inspo-icon' />
+                    <Car color='#14B9B2' size={32} aria-label='Car Icon' className='inspo-icon' />
+                    <Bus color='#71F2ED' size={32} aria-label='Bus Icon' className='inspo-icon' />
+                    <Sailboat color='#14B9B2' size={32} aria-label='Sailboat Icon' className='inspo-icon' />
+                    <Plane color='#71F2ED' size={32} aria-label='Plane Icon' className='inspo-icon' />
+                    <CableCar color='#14B9B2' size={32} aria-label='CableCar Icon' className='inspo-icon' />
+                    <Scooter color='#71F2ED' size={32} aria-label='Scooter Icon' className='inspo-icon' />
+                    <Box color='#FF4CED' size={32} aria-label='Box Icon' className='inspo-icon' />
+                </div>
+            </div>
+            
+            <header id="header">
+                <img className='logo' src='/Logo11.png' alt='Logo' />
+            </header>
+        </section>
 
         {/* WELTMODELL */}    
-        {/* example image of the Board of vehicles sorted by tags given by users */}
-        <div id="weltmodell">
-            <img
-                src={`https://picsum.photos/900/600?v=999`}
-                alt="Beispielbild des Weltmodells"
-            />
-        </div>
-        {/* transforming the Board on scroll smaller in the middle */}
-        
-        {/* MITWIRKENDE */}
-        {/* Text to each side of the Board about Weltmodell */}
-        <div id="mitwirken">
-            <div className="text-section">
-                <p>
-                    Das Weltmodell Kollektiv-Mobilität ist ein partizipatives Projekt, das darauf abzielt, die Mobilität der Zukunft durch gemeinschaftliches Engagement und kreative Gestaltung zu revolutionieren. 
-                    Nutzer*innen sind eingeladen, ihre eigenen Fahrzeugmodelle zu entwerfen und hochzuladen, um eine vielfältige Sammlung von Ideen und Konzepten zu schaffen.
-                </p>
-                <p>
-                    Durch die Nutzung von Tags können die Modelle kategorisiert und leicht zugänglich gemacht werden, was die Zusammenarbeit und den Austausch von Ideen fördert. 
-                    Das Projekt zielt darauf ab, eine Plattform zu bieten, auf der Menschen ihre Visionen für nachhaltige und innovative Mobilitätslösungen teilen können.
-                </p>
+        <section id="weltmodell-board" className="scroll-section">
+            <div className='section'>
+                {/* section with info text on the left and a video trailer of the Tool on the right */}
+                <div className='card'>
+                    <h3>Mobilität der Zukunft</h3>
+                    <p className='paragraph'>Straßen voller Autos und alle hupen grimmig. Leitbilder der Mobilität brauchen neuen Fahrtwind. Weltmodell will einen Rahmen schaffen um neue Arten der Mobilität zu diskutieren, um Zukunfts-visionen von denjenigen sammeln, die täglich damit umgehen, den Nutzern. Mit dem Weltmodell Tool kann man verschiedene Ebenen eines Verkehrsmittels der Zukunft gestalten, von der Sitzanordnung bis zum Gehäuße. Alle Modelle werden gesammelt und nach von den Erstellern gegebenen Tags sortiert, für eine große Übersicht.</p>
+                </div>
+                <video width="100%" height="100%" controls className='card-video'>
+                    <source src="/placeholder.mp4" type="video/mp4" />
+                    Your browser does not support the video tag.
+                </video>
             </div>
-            {/* a Map of the world with markers on all places from which a user uploaded a vehicle */}
-            <img
-                src={`https://picsum.photos/900/350?v=666`}
-                alt="Weltkarte mit Mitwirkenden"
-            />
-        </div>
-        
-        {/* HINTERGRUND */}
-        {/* 3 Cards: "Die Geschichte", "Das Tool", "Das Team" with information texts */}
-        <div id="hintergrund">
-            <div className="card">
-                <h3>Die Geschichte</h3>
-                <p>Informationen zur Entstehung des Projekts.</p>
+            {/* example image of the Board of vehicles sorted by tags given by users */}
+            <div className='board'>
+                {
+                    board === 1 ? <Board01 /> :
+                    board === 2 ? <Board02 /> :
+                    board === 3 ? <Board03 /> :
+                    board === 4 ? <Board04 /> :
+                    board === 5 ? <Board05 /> :
+                    <Board06 />
+                }
+                <div className='board-controls'>
+                    <div className={`board-control ${board === 1 ? "is-active" : ""}`} onClick={() => setBoard(1)} >
+                        <Maximize aria-label='sort by zones' className='board-control-icon' />
+                        <p>Zonen</p>
+                    </div>
+                    <div className={`board-control ${board === 2 ? "is-active" : ""}`} onClick={() => setBoard(2)} >
+                        <Box aria-label='sort by seats' className='board-control-icon' />
+                        <p>Sitze</p>
+                    </div>
+                    <div className={`board-control ${board === 3 ? "is-active" : ""}`} onClick={() => setBoard(3)} >
+                        <Earth aria-label='sort by version of the future' className='board-control-icon' />
+                        <p>Zukunftsstil</p>
+                    </div>
+                    <div className={`board-control ${board === 4 ? "is-active" : ""}`} onClick={() => setBoard(4)} >
+                        <Map aria-label='sort by terrain' className='board-control-icon' />
+                        <p>Gelände</p>
+                    </div>
+                    <div className={`board-control ${board === 5 ? "is-active" : ""}`} onClick={() => setBoard(5)} >
+                        <Zap aria-label='sort by energy source' className='board-control-icon' />
+                        <p>Antrieb</p>
+                    </div>
+                    <div className={`board-control ${board === 6 ? "is-active" : ""}`} onClick={() => setBoard(6)} >
+                        <Users aria-label='sort by target group' className='board-control-icon' />
+                        <p>Nutzer</p>
+                    </div>
+                </div>
+                
             </div>
-            <div className="card">
-                <h3>Das Tool</h3>
-                <p>Beschreibung des Tools zur Erstellung und Verwaltung der Fahrzeugmodelle.</p>
-            </div>
-            <div className="card">
-                <h3>Das Team</h3>
-                <p>Vorstellung des Teams hinter dem Projekt.</p>
-            </div>
-        </div>
+        </section>
         
         {/* WORKSHOP */}
-        {/* Card "Der Workshop" on the left and a Card with the Video of the Workshop on the right */}
-        <div id="workshop">
-            <div className='overview'>
+        <section id="workshop" className="scroll-section">
+            {/* info text on the left and a Video of the Workshop on the right */}
+            <div className='section'>
                 <div className="card">
-                    <h3>Der Workshop</h3>
-                    <p>Details zum Workshop, der Zusammenarbeit mit dem Futurium und dem Ablauf vor Ort.</p>
+                    <h3>Workshop Weltmodell x Futurium</h3>
+                    <p className='paragraph'>Weltmodell ist von den gleichen Machern, die mit dem Futurium den Workshop Kollektiv Mobilität umgesetzt haben.Der Workshop war ein interaktives Erlebnis, bei dem Teilnehmer*innen ihre eigenen Fahrzeugmodelle aus LEGO gestaltet haben. Die Veranstaltung fand im Rahmen des Open Lab  im Futurium statt und bot einen inspirierenden Raum für Innovation und Austausch.<br/>Vor Ort worden Busabteile umgestellt, neu gestaltet und passend an die jeweiligen Gruppen ein neues Modell der Kollektiv-Mobilität konzipiert.</p>
                 </div>
-                <div className="video-card">
-                    {/* Video about the Workshop, hosted locally in the assets folder */}
-                    <video width="100%" height="100%" controls>
-                        <source src="/assets/workshop_video.mp4" type="video/mp4" />
-                        Your browser does not support the video tag.
-                    </video>
+                <div className="card-video">
+                    <div className="video-embed">
+                        <iframe
+                            width="100%"
+                            height="100%"
+                            src="https://www.youtube.com/embed/UicY_ad6K4o"
+                            title="YouTube video player"
+                            frameBorder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowFullScreen
+                        />
+                    </div>
                 </div>
             </div>
 
-        {/* Card Carousel with pictures of the lego models on the left, a text about the group and a photo of them on the right */}
+            {/* Card Carousel with pictures of the lego models on the left, a text about the group and a photo of them on the right */}
             <div className="carousel">
                 {/* Implement a simple carousel here */}
                 <EmblaCarousel slides={SLIDES} options={OPTIONS} />
-                <div className="group-info">
-                    <p>Informationen über die Gruppe, die am Workshop teilgenommen hat.</p>
-                    <p className='groupnames'>Mika, Robin & Alex</p>
-                    <img
-                        src={`https://picsum.photos/150/150?v=333`}
-                        alt="Foto der Workshop-Gruppe"
-                    />
-                </div>
             </div>
-        </div>
+        </section>
+    </div>
 
-        {/* Footer with links to Imprint, Privacy Policy, Contact and Social Media opening in a new tab */}
+    {/* Footer with links to Imprint, Privacy Policy, Contact and Social Media opening in a new tab */}
         <footer>
+            <Separator.Root className="SeparatorRoot" style={{ margin: "15px 0" }} />
             <NavigationMenu.Root>
                 <NavigationMenu.List>
 
@@ -183,30 +264,76 @@ function Home() {
                 <NavigationMenu.List className='social'>
 
                     {/* Social Media links to Youtube, Instagram and Linkedin with the icons from lucide */}
-                    <NavigationMenu.Item>
-                        <NavigationMenu.Link href='https://www.youtube.com/@weltmodellkollektivmobilitaet' target="_blank" className='youtube'>
-                            <img src={Youtube} alt="YouTube" />
-                        </NavigationMenu.Link>
-                    </NavigationMenu.Item>
+                    
 
-                    <NavigationMenu.Item>
-                        <NavigationMenu.Link href='https://www.instagram.com/weltmodell_kollektiv_mobilitaet/' target="_blank" className='insta'>
-                            <img src={Instagram} alt="Instagram" />
-                        </NavigationMenu.Link>
-                    </NavigationMenu.Item>
+                    	<Popover.Root>
+                            <Popover.Trigger asChild className='social-button'>
+                                <button type="button" className="social-button" aria-label="YouTube">
+                                    <img src='/youtube.svg' alt="YouTube" className='social-icon' />
+                                </button>
+                            </Popover.Trigger>
+                            <Popover.Portal>
+                                <Popover.Content className='PopoverContent' sideOffset={5}>
+                                    <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+                                        <p className="Text" style={{ marginBottom: 10 }}>
+                                            Der Weltmodell Youtube Kanal ist noch in Bearbeitung :p
+                                        </p>
+                                    </div>
+                                    <Popover.Close className="PopoverClose" aria-label="Close" >
+                                        <X size={18} />
+                                    </Popover.Close>
+                                    <Popover.Arrow className="PopoverArrow" />
+                                </Popover.Content>
+                            </Popover.Portal>
+                        </Popover.Root>
 
-                    <NavigationMenu.Item>
-                        <NavigationMenu.Link href='https://www.linkedin.com/company/weltmodell-kollektiv-mobilit%C3%A4t/' target="_blank" className='linkedin'>
-                            <img src={Linkedin} alt="LinkedIn" />
-                        </NavigationMenu.Link>
-                    </NavigationMenu.Item>
+                        <Popover.Root>
+                            <Popover.Trigger asChild className='social-button'>
+                                <button type="button" className="social-button" aria-label="Instagram">
+                                    <img src='/instagram.svg' alt="Instagram" className='social-icon' />
+                                </button>
+                            </Popover.Trigger>
+                            <Popover.Portal>
+                                <Popover.Content className='PopoverContent' sideOffset={5}>
+                                    <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+                                        <p className="Text" style={{ marginBottom: 10 }}>
+                                            Der Weltmodell Instagram Kanal ist noch in Bearbeitung :p
+                                        </p>
+                                    </div>
+                                    <Popover.Close className="PopoverClose" aria-label="Close" >
+                                        <X size={18} />
+                                    </Popover.Close>
+                                    <Popover.Arrow className="PopoverArrow" />
+                                </Popover.Content>
+                            </Popover.Portal>
+                        </Popover.Root>
+
+                        <Popover.Root>
+                            <Popover.Trigger asChild className='social-button'>
+                                <button type="button" className="social-button" aria-label="Linkedin">
+                                    <img src='/linkedin.svg' alt="Linkedin" className='social-icon' />
+                                </button>
+                            </Popover.Trigger>
+                            <Popover.Portal>
+                                <Popover.Content className='PopoverContent' sideOffset={5}>
+                                    <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+                                        <p className="Text" style={{ marginBottom: 10 }}>
+                                            Der Weltmodell Linkedin Kanal ist noch in Bearbeitung :p
+                                        </p>
+                                    </div>
+                                    <Popover.Close className="PopoverClose" aria-label="Close" >
+                                        <X size={18} />
+                                    </Popover.Close>
+                                    <Popover.Arrow className="PopoverArrow" />
+                                </Popover.Content>
+                            </Popover.Portal>
+                        </Popover.Root>
 
                 </NavigationMenu.List>
 
             </NavigationMenu.Root>
         </footer>
-
-    </div>
+    </>
   );
 }
 
