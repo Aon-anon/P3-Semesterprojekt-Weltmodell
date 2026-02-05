@@ -10,7 +10,7 @@ import '../components/EmblaCarouselWithout/embla.css';
 import { Separator, Popover } from "radix-ui";
 
 const figmaUrl =
-  'https://www.figma.com/proto/o986kbjMzKObptJd6ThiEa/Untitled?node-id=141-1499&t=W4OxEt10S9FsnVdI-1&scaling=contain&content-scaling=fixed&page-id=141%3A1497&starting-point-node-id=141%3A1499';
+  'https://www.figma.com/proto/o986kbjMzKObptJd6ThiEa/Untitled?node-id=371-9063&p=f&t=DyejN8Xy4LASZDfD-1&scaling=scale-down&content-scaling=fixed&page-id=354%3A238&starting-point-node-id=371%3A9063';
 
 
 const OPTIONS = { loop: true }
@@ -55,40 +55,42 @@ function Home() {
 
   return (
     <>
-    {/* Navbar linking to different 5 sections in the scroller on the left and to the Tool Page on the right */}
-        <NavigationMenu.Root className='navbar'>
-            <NavigationMenu.List className='nav-list'>
+        <nav>
+        {/* Navbar linking to different 5 sections in the scroller on the left and to the Tool Page on the right */}
+            <NavigationMenu.Root className='navbar'>
+                <NavigationMenu.List className='nav-list'>
 
-                <NavigationMenu.Item className={`nav-item ${activeSection === "start" ? "is-active" : ""}`} >
-                    <NavigationMenu.Link href='#start'>
-                        Weltmodell
-                    </NavigationMenu.Link>
-                </NavigationMenu.Item>
+                    <NavigationMenu.Item className={`nav-item ${activeSection === "start" ? "is-active" : ""}`} >
+                        <NavigationMenu.Link href='#start'>
+                            Weltmodell
+                        </NavigationMenu.Link>
+                    </NavigationMenu.Item>
 
-                <NavigationMenu.Item className={`nav-item ${activeSection === "weltmodell-board" ? "is-active" : ""}`} >
-                    <NavigationMenu.Link href='#weltmodell-board'>
-                        Sammlung
-                    </NavigationMenu.Link>
-                </NavigationMenu.Item>
+                    <NavigationMenu.Item className={`nav-item ${activeSection === "weltmodell-board" ? "is-active" : ""}`} >
+                        <NavigationMenu.Link href='#weltmodell-board'>
+                            Sammlung
+                        </NavigationMenu.Link>
+                    </NavigationMenu.Item>
 
-                <NavigationMenu.Item className={`nav-item ${activeSection === "workshop" ? "is-active" : ""}`} >
-                    <NavigationMenu.Link href='#workshop'>
-                        Workshop
-                    </NavigationMenu.Link>
-                </NavigationMenu.Item>
+                    <NavigationMenu.Item className={`nav-item ${activeSection === "workshop" ? "is-active" : ""}`} >
+                        <NavigationMenu.Link href='#workshop'>
+                            Workshop
+                        </NavigationMenu.Link>
+                    </NavigationMenu.Item>
 
-                
+                    
+                {/* The Home Page of Weltmodell is a scroller, the tool a seperate page, which I won't be coding as a part of this semster, therefore linking to the Figma Klickdummy instead */}
+                </NavigationMenu.List>
+                <NavigationMenu.List className='nav-list'>
+                    <NavigationMenu.Item className='nav-button'>
+                        <NavigationMenu.Link className='btn-primary' href={figmaUrl} target='_blank' rel='noopener noreferrer' onClick={(e) => { e.preventDefault(); setLeaveOpen(true); }} >
+                            Mitmachen
+                        </NavigationMenu.Link>
+                    </NavigationMenu.Item>
+                </NavigationMenu.List>
 
-            </NavigationMenu.List>
-            <NavigationMenu.List className='nav-list'>
-                <NavigationMenu.Item className='nav-button'>
-                    <NavigationMenu.Link className='btn-primary' href={figmaUrl} target='_blank' rel='noopener noreferrer' onClick={(e) => { e.preventDefault(); setLeaveOpen(true); }} >
-                        Mitmachen
-                    </NavigationMenu.Link>
-                </NavigationMenu.Item>
-            </NavigationMenu.List>
-
-        </NavigationMenu.Root>
+            </NavigationMenu.Root>
+        </nav>
 
         {leaveOpen && (
         <div className="leave-overlay" onClick={() => setLeaveOpen(false)}>
@@ -118,13 +120,10 @@ function Home() {
         </div>
       )}
 
-    <div className="home-page">
-        {/* The Home Page of Weltmodell is a scroller, the tool a seperate page, which I won't be coding as a part of this semster, therefore linking to the Figma Klickdummy instead */}
-
+    
+    <main className="home-page">
         
-
-
-        {/* HEADER with Title "Weltmodell Kollektiv-Mobilität" and subtitle "Mitfahren, Mitgestalten" */}
+        {/* HEADER */}
         <section id='start' className="scroll-section">
             <div className='intro'>
                 <p>Wie wollen wir uns fortbewegen?</p>
@@ -149,7 +148,6 @@ function Home() {
         {/* WELTMODELL */}    
         <section id="weltmodell-board" className="scroll-section">
             <div className='section'>
-                {/* section with info text on the left and a video trailer of the Tool on the right */}
                 <div className='card'>
                     <h3>Mobilität der Zukunft</h3>
                     <p className='paragraph'>Straßen voller Autos und alle hupen grimmig. Leitbilder der Mobilität brauchen neuen Fahrtwind. Weltmodell will einen Rahmen schaffen um neue Arten der Mobilität zu diskutieren, um Zukunfts-visionen von denjenigen sammeln, die täglich damit umgehen, den Nutzern. Mit dem Weltmodell Tool kann man verschiedene Ebenen eines Verkehrsmittels der Zukunft gestalten, von der Sitzanordnung bis zum Gehäuße. Alle Modelle werden gesammelt und nach von den Erstellern gegebenen Tags sortiert, für eine große Übersicht.</p>
@@ -159,7 +157,6 @@ function Home() {
                     Your browser does not support the video tag.
                 </video>
             </div>
-            {/* example image of the Board of vehicles sorted by tags given by users */}
             <div className='board'>
                 <Board boardClass={`board-0${board}`} />
                 <div className='board-controls'>
@@ -194,11 +191,10 @@ function Home() {
         
         {/* WORKSHOP */}
         <section id="workshop" className="scroll-section">
-            {/* info text on the left and a Video of the Workshop on the right */}
             <div className='section'>
                 <div className="card">
-                    <h3>Workshop Weltmodell x Futurium</h3>
-                    <p className='paragraph'>Weltmodell ist von den gleichen Machern, die mit dem Futurium den Workshop Kollektiv Mobilität umgesetzt haben.Der Workshop war ein interaktives Erlebnis, bei dem Teilnehmer*innen ihre eigenen Fahrzeugmodelle aus LEGO gestaltet haben. Die Veranstaltung fand im Rahmen des Open Lab  im Futurium statt und bot einen inspirierenden Raum für Innovation und Austausch.<br/>Vor Ort worden Busabteile umgestellt, neu gestaltet und passend an die jeweiligen Gruppen ein neues Modell der Kollektiv-Mobilität konzipiert.</p>
+                    <h3>Weltmodell x Futurium</h3>
+                    <p className='paragraph'>Weltmodell ist von den gleichen Machern wie der Workshop Kollektiv-Mobilität, ein interaktives Erlebnis, das in Zusammenarbeit mit dem Futurium entstand. Dabei ging es auch um das Einbinden von Nutzerperspektiven in die Gestaltung, mit Fokus auf den Austausch untereinander, um eine Version der Mobilität für die ganze Gruppe zu finden. Vor Ort wurden Busabteile umgestellt, neu gestaltet und passend an die jeweiligen Gruppen ein neues Modell der Mobilität konzipiert. Die Veranstaltung fand im Rahmen des Open Lab im Futurium statt und bot einen inspirierenden Raum für Innovation und Gemeinschaft.</p>
                 </div>
                 <div className="card-video">
                     <div className="video-embed">
@@ -217,13 +213,12 @@ function Home() {
 
             {/* Card Carousel with pictures of the lego models on the left, a text about the group and a photo of them on the right */}
             <div className="carousel">
-                {/* Implement a simple carousel here */}
                 <EmblaCarousel slides={SLIDES} options={OPTIONS} />
             </div>
         </section>
-    </div>
+    </main>
 
-    {/* Footer with links to Imprint, Privacy Policy, Contact and Social Media opening in a new tab */}
+    {/* FOOTER with links to Imprint, Privacy Policy, Contact and Social Media opening in a new tab */}
         <footer>
             <Separator.Root className="SeparatorRoot" style={{ margin: "15px 0" }} />
             <NavigationMenu.Root>
@@ -250,8 +245,8 @@ function Home() {
                 </NavigationMenu.List>
                 <NavigationMenu.List className='social'>
 
-                    {/* Social Media links to Youtube, Instagram and Linkedin with the icons from lucide */}
-                    
+                    {/* Social Media links to Youtube, Instagram and Linkedin with the icons from lucide
+                    the actual pages do not exist yet therefore a popover to inform the tester */}
 
                     	<Popover.Root>
                             <Popover.Trigger asChild className='social-button'>

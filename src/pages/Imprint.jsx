@@ -1,28 +1,72 @@
 
 
+import { Separator } from "radix-ui";
+
 function Imprint() {
   return (
-    <div className="Imprint">
-      <header>
-        <h1>Imprint</h1>
+    <div className="legal-page imprint">
+      <header className="legal-header">
+        <h1>Impressum</h1>
       </header>
 
-      <main>
-        <h2>Weltmodell - Kollektiv Mobilität</h2>
-        <p>Address: Example Street 123, 10115 Berlin, Germany</p>
-        <p>Phone: +49 30 12345678</p>
-        <p>Email: kontakt@weltmodell.de</p>
-        <h3>Responsible for content according to § 55 Abs. 2 RStV:</h3>
-        <p>Max Mustermann<br />
-        Example Street 123<br />
-        10115 Berlin<br />
-        Germany</p>
+      <main className="legal-main">
+        <section className="legal-section">
+          <h2>Angaben zum Anbieter</h2>
+          <Separator.Root className="legal-separator" />
+          <p><strong>Weltmodell</strong> – studentisches Projekt (h_da, Interactive Media Design)</p>
+          {/* EXTRA: fill in a reasonable name and an adress if hosting/sharing */}
+          <address>
+            Projektgruppe Weltmodell<br />
+            Hochschule Darmstadt<br />
+            64295 Darmstadt<br />
+            Deutschland
+          </address>
+          {/* EXTRA: change to actual email if hosting/sharing */}
+          <ul>
+            <li>E-Mail:<a href="mailto:kontakt@weltmodell.de">kontakt@weltmodell.de</a></li>
+          </ul>
+        </section>
 
-        <h3>Disclaimer:</h3>
-        <p>The content of this website has been created with the utmost care. However, we cannot guarantee the accuracy, completeness, or timeliness of the content. As a service provider, we are responsible for our own content on these pages according to § 7 Abs.1 TMG, but not obliged to monitor external information provided or stored on our platform according to §§ 8 to 10 TMG.</p>
+        <section className="legal-section">
+          <h2>Projektkontext</h2>
+          <Separator.Root className="legal-separator" />
+          <p>
+            Weltmodell ist ein nicht-kommerzielles, unabhängiges Studienprojekt; keine offizielle Plattform des Futuriums. Es handelt sich nicht um ein reales
+            Workshopangebot oder eine Sharing-Plattform.
+          </p>
+        </section>
 
-        <h3>Copyright:</h3>
-        <p>The content and works on these pages created by the site operators are subject to German copyright law. The reproduction, processing, distribution, or any form of commercialization of such material beyond the scope of copyright law requires the prior written consent of its respective author or creator.</p>
+        <section className="legal-section">
+          <h2>Bildnachweise</h2>
+          <Separator.Root className="legal-separator" />
+          <p>
+            Das Tutorial-Video und das darin zu sehende 3D-Modell wurden von uns erstellt.
+            Die Bilder auf dieser Website sind Platzhalter um Testern ein Gefühl vom Workshop und Tool zu geben. Sie sind nicht im Rahmen des Projekts entstanden.
+          </p>
+          <ul>
+            <li>Platzhalter Legomodelle, Gruppen- und Nutzer-Avatare: Pixabay (Pixabay License).</li>
+            <li>Modellbilder Weltmodell Sammlung: KI-generiert, basierend auf einem von uns erstellten 3D-Modell.</li>
+            <li>Teaser-Video eingebettet von Futurium (YouTube).</li>
+          </ul>
+        </section>
+
+        <section className="legal-section">
+          <h2>Haftung</h2>
+          <Separator.Root className="legal-separator" />
+          <p>
+            Wir erstellen die Inhalte mit Sorgfalt, übernehmen aber keine Gewähr für Richtigkeit,
+            Vollständigkeit und Aktualität.
+          </p>
+        </section>
+
+        <section className="legal-section">
+          <h2>Urheberrecht</h2>
+          <Separator.Root className="legal-separator" />
+          <p>
+            Inhalte und Werke auf dieser Website unterliegen dem Urheberrecht. Eine Verwendung außerhalb
+            der gesetzlichen Grenzen ist nur mit vorheriger Zustimmung möglich.
+          </p>
+        </section>
       </main>
     </div>
   )

@@ -29,17 +29,15 @@ body {
 }
 
 h1 {
-    font-family: Inter;
     font-weight: bold;
     font-size: 64px;
-    text-align: center;
+    text-align: left;
 }
 
 h2 {
-    font-family: Inter;
-    font-weight: light;
+    font-weight: normal;
     font-size: 24px;
-    text-align: center;
+    text-align: left;
 }
 
 h3 {
@@ -331,6 +329,8 @@ a:focus-visible {
     width: 32px;
     height: 32px;
     color: #ffffff;
+    background-color: transparent;
+    border: none;
 }
 
 .board-icon:hover {
@@ -879,4 +879,83 @@ footer a:hover {
     width: 800px;
     height: 450px;
     border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* PAGES Contact, Imprint, Privacy */
+.legal-page {
+  min-height: 100vh;
+}
+
+.legal-header {
+  max-width: 888px;
+  margin: 0 auto;
+  padding: 2rem 0 1rem 0;
+  border-bottom: 1px solid #ffffff;
+}
+.legal-header h1 {
+  margin: 1rem 0;
+}
+.legal-main {
+  max-width: 888px;
+  margin: 0 auto;
+  padding: 2rem 4rem;
+  display: grid;
+  gap: 1rem;
+}
+.legal-section {
+  padding: 1rem 0;
+}
+.legal-section h2 {
+  margin: 0;
+}
+/* Separator styling - semantic visual break between section heading and content */
+.legal-separator {
+  height: 2px;
+  width: 66px;
+  background-color: #FF4CED;
+  margin: 0.5rem 0 1rem 0;
+  border: none;
+}
+.legal-section p + p {
+  margin: 1rem 0 0 0;
+  padding-left: 1rem;
+  line-height: 1.4rem;
+}
+.legal-section ul {
+  margin: 1rem 0 0 1.5rem;
+  padding-left: 1.1rem;
+}
+.legal-section li {
+  margin: 0.5rem 0;
+}
+.legal-section address {
+  font-style: normal;
+}
+.legal-page a {
+  color: #ffffff;
+  text-decoration: none;
+  transition: color .15s ease-out;
+}
+.legal-page a:hover {
+  color: #FF4CED;
+}
+.legal-page a:active {
+  color: #260B24;
+}
+.legal-page a:focus-visible {
+  color: #FF4CED;
+}
+
+/* Make paragraphs in the legal pages start slightly indented
+   so they don't align exactly with the section headings */
+.contact main p,
+.imprint main p,
+.privacy main p,
+.imprint main address {
+  padding-left: 2rem;
+}
+
+/* Add top margin to notice paragraphs in legal pages */
+.legal-notice {
+  margin-top: 1rem !important;
 }

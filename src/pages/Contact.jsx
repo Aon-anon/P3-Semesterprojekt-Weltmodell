@@ -1,31 +1,36 @@
-
+import { Separator } from "radix-ui";
 
 function Contact() {
   return (
-    <div className="Contact">
-      <header>
-        <h1>Contact Us</h1>
+    <div className="legal-page contact">
+      <header className="legal-header">
+        <h1>Kontakt</h1>
       </header>
 
-      <main>
-        <section>
-          <h2>Get in Touch</h2>
-          <p>If you have any questions or would like to collaborate, please reach out to us!</p>
+      <main className="legal-main">
+        <section className="legal-section">
+          <h2>Schreib uns!</h2>
+          <Separator.Root className="legal-separator" />
+          <p>Weltmodell ist ein studentisches Semesterprojekt. Wir freuen uns über Feedback,
+            Fragen und Austausch – egal ob du das Tool getestet hast oder einfach Ideen teilen willst.</p>
+          {/* EXTRA: change to actual email if hosting/sharing */}
           <ul>
-            <li>Email: kontakt@weltmodell.de</li>
-            <li>Phone: +49 30 12345678</li>
-            <li>Address: Musterstraße 1, 10115 Berlin, Germany</li>
+            <li>E-Mail:<a href="mailto:kontakt@weltmodell.de">kontakt@weltmodell.de</a></li>
           </ul>
+
+          <p className="legal-notice">
+            Hinweis: Wir sind ein Studienprojekt und kein Kundenservice – Antworten können je nach
+            Semesterphase etwas dauern.
+          </p>
         </section>
 
-        <section>
-          <h2>Follow Us</h2>
-          <p>Stay updated by following us on social media:</p>
-          <ul>
-            <li><a href="https://www.instagram.com/weltmodell_kollektiv_mobilitaet/">Instagram</a></li>
-            <li><a href="https://twitter.com/weltmodell_km">Twitter</a></li>
-            <li><a href="https://www.linkedin.com/company/weltmodell-kollektiv-mobilit%C3%A4t/">LinkedIn</a></li>
-          </ul>
+        <section className="legal-section">
+          <h2>Über das Projekt</h2>
+          <Separator.Root className="legal-separator" />
+          <p>
+            Das Projekt entstand im Rahmen eines Semesters und wurde im Austausch mit dem Futurium Berlin diskutiert (z. B. Feedback zu Konzept und Prototyp).
+            Weltmodell soll einen Raum schaffen, um Mobilitätsvisionen gemeinsam zu diskutieren – spielerisch, zugänglich und offen.
+          </p>
         </section>
       </main>
     </div>
