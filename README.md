@@ -2,6 +2,7 @@
 
 Dieses Repository enthält den gesamten Quellcode der Weltmodell-Website.
 Um das Testen zu erleichtern, befindet sich im Ordner dist bereits eine für die Produktion kompilierte Version der Anwendung.
+Für das Ausführen des Prototyps muss node.js installiert sein: https://nodejs.org/en/download.
 
 **Ausführung**
 
