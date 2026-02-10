@@ -1,6 +1,7 @@
 Projektdemonstration im Rahmen P3 WS 25/26 IMD hda
-Ich habe einen dist Ordner erstellt. Dieser ist hier im gleichnamigen Unterordner und liegt im Unterordner meines Semesterabgabeordners in der Zwischenlagerung.
-Dort mit cd dist reingehen und "npx serve -s ." ausführen. Dann kann man dem Link im Browser folgen und sich die Website anschauen.
+
+Ich habe einen dist Ordner erstellt. Dieser ist hier im gleichnamigen Unterordner und liegt im Unterordner "Code" meines Semesterabgabeordners in der Zwischenlagerung.
+Dort in einem Terminal z.B. durch "cd dist" reingehen und "npx serve -s ." ausführen. Dann kann man dem Link im Browser folgen und sich die Website anschauen.
 
 
 
