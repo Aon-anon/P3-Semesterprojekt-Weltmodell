@@ -1,3 +1,9 @@
+Projektdemonstration im Rahmen P3 WS 25/26 IMD hda
+Ich habe einen dist Ordner erstellt. Dieser ist hier im gleichnamigen Unterordner und liegt im Unterordner meines Semesterabgabeordners in der Zwischenlagerung.
+Dort mit cd dist reingehen und "npx serve -s ." ausführen. Dann kann man dem Link im Browser folgen und sich die Website anschauen.
+
+
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
