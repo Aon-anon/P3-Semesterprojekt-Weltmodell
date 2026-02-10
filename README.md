@@ -1,6 +1,6 @@
 Projektdemonstration im Rahmen P3 WS 25/26 IMD hda
 
-Ich habe einen dist Ordner erstellt. Um auf diesen zuzugreifen, lade den den Code als zip Datei runter, extrahiere diese und gehe über ein Terminal z.B. durch cd dist in diesen Ordner. Dort führe im Terminal "npx serve -s ." aus. Dann kann man dem Link im Browser folgen und sich die Website anschauen.
+Ich habe einen dist Ordner erstellt und diesen im Repo hochgeladen. Um auf diesen zuzugreifen, lade den den Code als zip Datei runter, extrahiere diese und öffne ein Terminal im Hauptordner des Projekts. Dort führe im Terminal "npx serve -s /dist" aus. Dann kann man dem Link im Browser folgen und sich die Website anschauen.
 
 
 
