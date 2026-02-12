@@ -153,7 +153,7 @@ function Home() {
                     <p className='paragraph'>Straßen voller Autos und alle hupen grimmig. Leitbilder der Mobilität brauchen neuen Fahrtwind. Weltmodell will einen Rahmen schaffen um neue Arten der Mobilität zu diskutieren, um Zukunfts-visionen von denjenigen sammeln, die täglich damit umgehen, den Nutzern. Mit dem Weltmodell Tool kann man verschiedene Ebenen eines Verkehrsmittels der Zukunft gestalten, von der Sitzanordnung bis zum Gehäuße. Alle Modelle werden gesammelt und nach von den Erstellern gegebenen Tags sortiert, für eine große Übersicht.</p>
                 </div>
                 <video width="100%" height="100%" controls className='card-video'>
-                    <source src="/placeholder.mp4" type="video/mp4" />
+                    <source src="/Tutorial-final.mp4" type="video/mp4" />
                     Your browser does not support the video tag.
                 </video>
             </div>
