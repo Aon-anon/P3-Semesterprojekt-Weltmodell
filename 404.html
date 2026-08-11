@@ -2,13 +2,19 @@
 <html lang="de">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="refresh" content="0; url=/P3-Semesterprojekt-Weltmodell/" />
-    <title>Weltmodell</title>
+    <title>Seite nicht gefunden</title>
+    <script>
+      (function () {
+        var base = "/P3-Semesterprojekt-Weltmodell";
+        var path = window.location.pathname;
+        var redirect = path.substring(base.length);
+        if (!redirect || redirect === "/") redirect = "/";
+        window.location.replace(base + "/?redirect=" + encodeURIComponent(redirect));
+      })();
+    </script>
   </head>
   <body>
-    <p>Redirecting to the app...</p>
-    <script>
-      window.location.replace('/P3-Semesterprojekt-Weltmodell/')
-    </script>
+    <p>Weiterleitung zur Anwendung...</p>
+    <p><a href="/P3-Semesterprojekt-Weltmodell/">Zurück zur Startseite</a></p>
   </body>
 </html>
