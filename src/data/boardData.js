@@ -76,4 +76,15 @@ export const BOARD_DATA = [
     energy: "Wasserstoff",
     target: "Besorgungen",
   }
+  ,{
+    name: "Aon",
+    description: "Ein Fahrzeug besteht aus verschiedenen Abteilen, die sich für die letzten Meile trennen und einzeln weiterfahren. Man kann die Abteile nach Bedarf kominieren und es gibt spezielle für Menschen mit besonderen Bedürfnissen, wie z.B. Kinderwagen oder Rollstühle.",
+    avatar: "https://picsum.photos/150/150?v=888",
+    zones: "05",
+    seats: "32",
+    future: "Hopepunk",
+    terrain: "Land",
+    energy: "induktiv",
+    target: "Besorgungen",
+  }
 ];
