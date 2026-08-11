@@ -23,7 +23,7 @@ const EmblaCarousel = (props) => {
                   <div className='carousel-img'>
                     <img
                       className="embla__slide__img"
-                      src={`/lego-0${index}.jpg`}
+                      src={import.meta.env.BASE_URL + `lego-0${index}.jpg`}
                       alt="Legomodell der Gruppe"
                     />
                     <div className='tag-wrap'>
@@ -66,7 +66,7 @@ const EmblaCarousel = (props) => {
                     </div>
 
                     <img
-                      src={`/group-0${index}.jpg`}
+                      src={import.meta.env.BASE_URL + `group-0${index}.jpg`}
                       alt="Foto der Workshop-Gruppe"
                     />
                   </div>

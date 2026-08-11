@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { NavigationMenu } from "radix-ui";
-import { Footprints, Bike, Car, Bus, Sailboat, Plane, CableCar, Scooter, Box, X } from 'lucide-react';
+import { Footprints, Bike, Car, Bus, Sailboat, Plane, CableCar, Scooter, Box, X, Menu } from 'lucide-react';
 import Board from '../components/Board/Board.jsx';
 import { Maximize, Earth, Map, Zap, Users, Timer } from 'lucide-react';
 import EmblaCarousel from '../components/EmblaCarouselWithout/EmblaCarousel.jsx';
@@ -20,6 +20,7 @@ const SLIDES = Array.from(Array(SLIDE_COUNT).keys())
 function Home() {
 
     const [activeSection, setActiveSection] = useState("start");
+    const [menuOpen, setMenuOpen] = useState(false);
 
     useEffect(() => {
         const ids = ["start", "weltmodell-board", "workshop"];
@@ -57,23 +58,32 @@ function Home() {
     <>
         <nav>
         {/* Navbar linking to different 5 sections in the scroller on the left and to the Tool Page on the right */}
-            <NavigationMenu.Root className='navbar'>
+            <NavigationMenu.Root className={`navbar${menuOpen ? ' is-open' : ''}`}>
+                <button
+                    type="button"
+                    className={`menu-toggle${menuOpen ? ' is-open' : ''}`}
+                    aria-expanded={menuOpen}
+                    aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+                    onClick={() => setMenuOpen((open) => !open)}
+                >
+                    {menuOpen ? <X size={22} aria-hidden="true" /> : <Menu size={22} aria-hidden="true" />}
+                </button>
                 <NavigationMenu.List className='nav-list'>
 
                     <NavigationMenu.Item className={`nav-item ${activeSection === "start" ? "is-active" : ""}`} >
-                        <NavigationMenu.Link href='#start'>
+                        <NavigationMenu.Link href='#start' onClick={() => setMenuOpen(false)}>
                             Weltmodell
                         </NavigationMenu.Link>
                     </NavigationMenu.Item>
 
                     <NavigationMenu.Item className={`nav-item ${activeSection === "weltmodell-board" ? "is-active" : ""}`} >
-                        <NavigationMenu.Link href='#weltmodell-board'>
+                        <NavigationMenu.Link href='#weltmodell-board' onClick={() => setMenuOpen(false)}>
                             Sammlung
                         </NavigationMenu.Link>
                     </NavigationMenu.Item>
 
                     <NavigationMenu.Item className={`nav-item ${activeSection === "workshop" ? "is-active" : ""}`} >
-                        <NavigationMenu.Link href='#workshop'>
+                        <NavigationMenu.Link href='#workshop' onClick={() => setMenuOpen(false)}>
                             Workshop
                         </NavigationMenu.Link>
                     </NavigationMenu.Item>
@@ -83,7 +93,7 @@ function Home() {
                 </NavigationMenu.List>
                 <NavigationMenu.List className='nav-list'>
                     <NavigationMenu.Item className='nav-button'>
-                        <NavigationMenu.Link className='btn-primary' href={figmaUrl} target='_blank' rel='noopener noreferrer' onClick={(e) => { e.preventDefault(); setLeaveOpen(true); }} >
+                        <NavigationMenu.Link className='btn-primary' href={figmaUrl} target='_blank' rel='noopener noreferrer' onClick={(e) => { e.preventDefault(); setLeaveOpen(true); setMenuOpen(false); }} >
                             Mitmachen
                         </NavigationMenu.Link>
                     </NavigationMenu.Item>
@@ -141,7 +151,7 @@ function Home() {
             </div>
             
             <header id="header">
-                <img className='logo' src='/Logo11.png' alt='Logo' />
+                <img className='logo' src={import.meta.env.BASE_URL + 'Logo11.png'} alt='Logo' />
             </header>
         </section>
 
@@ -153,7 +163,7 @@ function Home() {
                     <p className='paragraph'>Straßen voller Autos und alle hupen grimmig. Leitbilder der Mobilität brauchen neuen Fahrtwind. Weltmodell will einen Rahmen schaffen um neue Arten der Mobilität zu diskutieren, um Zukunfts-visionen von denjenigen sammeln, die täglich damit umgehen, den Nutzern. Mit dem Weltmodell Tool kann man verschiedene Ebenen eines Verkehrsmittels der Zukunft gestalten, von der Sitzanordnung bis zum Gehäuße. Alle Modelle werden gesammelt und nach von den Erstellern gegebenen Tags sortiert, für eine große Übersicht.</p>
                 </div>
                 <video width="100%" height="100%" controls className='card-video'>
-                    <source src="/Tutorial-final.mp4" type="video/mp4" />
+                    <source src={import.meta.env.BASE_URL + 'Tutorial-final.mp4'} type="video/mp4" />
                     Your browser does not support the video tag.
                 </video>
             </div>
@@ -201,12 +211,14 @@ function Home() {
                         <iframe
                             width="100%"
                             height="100%"
-                            src="https://www.youtube.com/embed/UicY_ad6K4o"
+                            src="https://www.youtube.com/embed/UicY_ad6K4o?feature=oembed&rel=0"
                             title="YouTube video player"
                             frameBorder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                             allowFullScreen
-                        />
+                            loading="lazy"
+                            referrerPolicy="strict-origin-when-cross-origin"
+                        ></iframe>
                     </div>
                 </div>
             </div>
@@ -221,37 +233,38 @@ function Home() {
     {/* FOOTER with links to Imprint, Privacy Policy, Contact and Social Media opening in a new tab */}
         <footer>
             <Separator.Root className="SeparatorRoot" style={{ margin: "15px 0" }} />
-            <NavigationMenu.Root>
-                <NavigationMenu.List>
+                        <div className="footer-nav">
+                            <NavigationMenu.Root className="footer-nav-root">
+                  <NavigationMenu.List className="footer-links">
 
-                    <NavigationMenu.Item>
-                        <NavigationMenu.Link href='/imprint' target="_blank">
-                            Imprint
-                        </NavigationMenu.Link>
-                    </NavigationMenu.Item>
+                      <NavigationMenu.Item>
+                          <NavigationMenu.Link href={import.meta.env.BASE_URL + 'imprint'} target="_blank">
+                              Imprint
+                          </NavigationMenu.Link>
+                      </NavigationMenu.Item>
 
-                    <NavigationMenu.Item>
-                        <NavigationMenu.Link href='/privacy' target="_blank">
-                            Privacy Policy
-                        </NavigationMenu.Link>
-                    </NavigationMenu.Item>
+                      <NavigationMenu.Item>
+                          <NavigationMenu.Link href={import.meta.env.BASE_URL + 'privacy'} target="_blank">
+                              Privacy Policy
+                          </NavigationMenu.Link>
+                      </NavigationMenu.Item>
 
-                    <NavigationMenu.Item>
-                        <NavigationMenu.Link href='/contact' target="_blank">
-                            Contact
-                        </NavigationMenu.Link>
-                    </NavigationMenu.Item>
+                      <NavigationMenu.Item>
+                          <NavigationMenu.Link href={import.meta.env.BASE_URL + 'contact'} target="_blank">
+                              Contact
+                          </NavigationMenu.Link>
+                      </NavigationMenu.Item>
 
-                </NavigationMenu.List>
-                <NavigationMenu.List className='social'>
+                  </NavigationMenu.List>
+                  <NavigationMenu.List className='social footer-social'>
 
                     {/* Social Media links to Youtube, Instagram and Linkedin with the icons from lucide
                     the actual pages do not exist yet therefore a popover to inform the tester */}
 
                     	<Popover.Root>
                             <Popover.Trigger asChild className='social-button'>
-                                <button type="button" className="social-button" aria-label="YouTube">
-                                    <img src='/youtube.svg' alt="YouTube" className='social-icon' />
+                                    <button type="button" className="social-button" aria-label="YouTube">
+                                    <img src={import.meta.env.BASE_URL + 'youtube.svg'} alt="YouTube" className='social-icon' />
                                 </button>
                             </Popover.Trigger>
                             <Popover.Portal>
@@ -272,7 +285,7 @@ function Home() {
                         <Popover.Root>
                             <Popover.Trigger asChild className='social-button'>
                                 <button type="button" className="social-button" aria-label="Instagram">
-                                    <img src='/instagram.svg' alt="Instagram" className='social-icon' />
+                                    <img src={import.meta.env.BASE_URL + 'instagram.svg'} alt="Instagram" className='social-icon' />
                                 </button>
                             </Popover.Trigger>
                             <Popover.Portal>
@@ -293,7 +306,7 @@ function Home() {
                         <Popover.Root>
                             <Popover.Trigger asChild className='social-button'>
                                 <button type="button" className="social-button" aria-label="Linkedin">
-                                    <img src='/linkedin.svg' alt="Linkedin" className='social-icon' />
+                                    <img src={import.meta.env.BASE_URL + 'linkedin.svg'} alt="Linkedin" className='social-icon' />
                                 </button>
                             </Popover.Trigger>
                             <Popover.Portal>
@@ -314,6 +327,7 @@ function Home() {
                 </NavigationMenu.List>
 
             </NavigationMenu.Root>
+          </div>
         </footer>
     </>
   );

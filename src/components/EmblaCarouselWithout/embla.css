@@ -116,9 +116,16 @@
 .embla__dot:before {
   border: 0.2rem solid #ffffff;
 }
+.embla__dot:hover:before {
+  border-color: #FF4CED;
+}
 .embla__dot:after {
   border: 0.2rem solid #FF4CED;
   opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+.embla__dot:hover:after {
+  opacity: 1;
 }
 .embla__dot--selected:after {
   opacity: 1;

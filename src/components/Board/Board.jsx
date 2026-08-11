@@ -49,7 +49,7 @@ function Board({ boardClass = "board-01" }) {
               return (
                 <>
                   <div className="modell">
-                    <img className="modell-image" src={`/modell-${String(modelIndex + 1).padStart(2, '0')}.jpg`} alt="Fahrzeugmodell" />
+                    <img className="modell-image" src={import.meta.env.BASE_URL + `modell-${String(modelIndex + 1).padStart(2, '0')}.jpg`} alt="Fahrzeugmodell" />
                     <div className='modell-tag-wrap'>
                       <div className='modell-tags'>
                         <Maximize aria-label='zones' className='modell-tag-icon' />
