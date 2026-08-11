@@ -15,7 +15,7 @@ function Contact() {
             Fragen und Austausch – egal ob du das Tool getestet hast oder einfach Ideen teilen willst.</p>
           {/* EXTRA: change to actual email if hosting/sharing */}
           <ul>
-            <li>E-Mail:<a href="mailto:kontakt@weltmodell.de">kontakt@weltmodell.de</a></li>
+            <li>E-Mail:<a href="mailto:lilith@wirsings.de">lilith@wirsings.de</a></li>
           </ul>
 
           <p className="legal-notice">
